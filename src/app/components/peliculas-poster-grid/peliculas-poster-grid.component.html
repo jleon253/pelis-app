@@ -1,15 +1,19 @@
 <div class="row">
-  <div class="col-md-3 mb-5"
+  <div class="col-sm-4 col-md-3 mb-5"
     *ngFor="let movie of movies">
     <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}"
       [alt]="movie.title"
       class="img-fluid poster">
     <h5 class="mt-2"><b>{{ movie.title }}</b></h5>
     <div class="row text-muted">
-      <div class="col-10">
-        *****
+      <div class="col-10 col-sm-9">
+        <bar-rating [rate]="movie.vote_average"
+          [max]="10"
+          [readOnly]="true"
+          [theme]="'fontawesome-o'"
+          class="myStars"></bar-rating>
       </div>
-      <div class="col-2">
+      <div class="col-2 col-sm-3">
         {{ movie.vote_average | number:'1.1-2' }}
       </div>
     </div>

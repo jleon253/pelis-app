@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~ngx-bar-rating/themes/br-fontawesome-o-theme';
+
 body {
     background-color: #14161E;
 }
@@ -33,4 +35,18 @@ hr{
 
 .block {
     display:block;
+}
+
+.myStars .br{
+  margin: .25rem 0px !important;
+}
+
+.myStars .br-fontawesome-o .br-unit{
+  font-size: 14px;
+}
+
+@media screen and (min-width: 576px) and (max-width: 991px){
+  .myStars .br-fontawesome-o .br-unit{
+    font-size: 10px;
+  }
 }
