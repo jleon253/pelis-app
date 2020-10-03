@@ -1,6 +1,12 @@
 .swiper-container{
-  height: 330px;
   width: 100%;
+  height: 330px;
+}
+
+@media screen and (min-width: 1024px){
+  .swiper-container{
+    height: 500px;
+  }
 }
 
 .swiper-button-prev, .swiper-button-next{

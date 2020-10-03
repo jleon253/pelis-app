@@ -5,16 +5,16 @@ import { Movie } from '../../interfaces/cartelera-response';
 @Component({
   selector: 'app-slideshow',
   templateUrl: './slideshow.component.html',
-  styleUrls: ['./slideshow.component.css']
+  styleUrls: ['./slideshow.component.css'],
 })
 export class SlideshowComponent implements OnInit, AfterViewInit {
-
   @Input() movies: Movie[];
+  mySwiper: Swiper;
 
   constructor() {}
-  
+
   ngAfterViewInit(): void {
-    const mySwiper = new Swiper('.swiper-container', {
+    this.mySwiper = new Swiper('.swiper-container', {
       loop: true,
     });
   }
@@ -23,4 +23,11 @@ export class SlideshowComponent implements OnInit, AfterViewInit {
     console.log(this.movies);
   }
 
+  onClickPrev() {
+    this.mySwiper.slidePrev();
+  }
+
+  onClickNext() {
+    this.mySwiper.slideNext();
+  }
 }
