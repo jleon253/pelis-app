@@ -6,6 +6,7 @@ import { BarRatingModule } from 'ngx-bar-rating';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SlideshowComponent } from './slideshow/slideshow.component';
 import { PeliculasPosterGridComponent } from './peliculas-poster-grid/peliculas-poster-grid.component';
+import { PipesModule } from '../pipes/pipes.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { PeliculasPosterGridComponent } from './peliculas-poster-grid/peliculas-
   imports: [
     CommonModule,
     RouterModule,
-    BarRatingModule
+    BarRatingModule,
+    PipesModule
   ],
   exports: [
     NavbarComponent,
