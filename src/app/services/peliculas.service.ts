@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { CarteleraResponse, Movie } from '../interfaces/cartelera-response';
+import { MovieResponse } from '../interfaces/movie-response';
 
 @Injectable({
   providedIn: 'root',
@@ -35,5 +36,27 @@ export class PeliculasService {
         this.carteleraPage += 1;
         this.cargando = false;
       }));
+  }
+
+  buscarPeliculas(texto: string): Observable<Movie[]> {
+    const params = {
+      ...this.params,
+      page: '1',
+      query: texto,
+      include_adult: 'true',
+    };
+    return this.http
+      .get<CarteleraResponse>(`${this.baseUrl}/search/movie`, {params})
+      .pipe(
+        map( resp => resp.results )
+      );
+  }
+
+  resetCarteleraPage() {
+    this.carteleraPage = 1;
+  }
+
+  getPeliculaDetalle(id: string) {
+    return this.http.get<MovieResponse>(`${this.baseUrl}/movie/${id}`, {params: this.params});
   }
 }
