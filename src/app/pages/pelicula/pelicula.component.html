@@ -28,3 +28,10 @@
     </div>
   </div>
 </div>
+<h3>Casting</h3>
+<hr>
+<div class="row mt-4" *ngIf="cast.length > 0">
+  <div class="col">
+    <app-cast-slideshow [cast]="cast"></app-cast-slideshow>
+  </div>
+</div>
