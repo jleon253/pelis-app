@@ -4,6 +4,7 @@ import { PeliculasService } from '../../services/peliculas.service';
 import { MovieResponse } from '../../interfaces/movie-response';
 import {Location} from '@angular/common';
 import { Cast } from '../../interfaces/credits-response';
+import {combineLatest} from 'rxjs';
 
 @Component({
   selector: 'app-pelicula',
@@ -24,25 +25,26 @@ export class PeliculaComponent implements OnInit {
 
   ngOnInit(): void {
     const {id} = this.activatedRoute.snapshot.params;
-    this.peliService.getPeliculaDetalle(id)
-      .toPromise()
-      .then(movie => {
+
+    /*
+    combineLatest([]):
+    Similar a Promise.all() , ejecuta varios observables a la vez y
+    retorna un array con las respuestas de cada observable
+    */
+    combineLatest([
+      this.peliService.getPeliculaDetalle(id),
+      this.peliService.getCast(id)
+    ]).toPromise()
+      .then(([movie, cast]) => {
         if (!movie) {
           this.router.navigateByUrl('/home');
           return;
         }
-        console.log(movie);
         this.pelicula = movie;
-      })
-      .catch(err => console.error(err));
-    
-    this.peliService.getCast(id)
-      .toPromise()
-      .then(cast => {
-        console.log(cast);
         this.cast = cast;
       })
       .catch(err => console.error(err));
+
   }
 
   onRegresar() {

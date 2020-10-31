@@ -1,4 +1,15 @@
-<div class="row my-4" *ngIf="pelicula">
+<div class="row mt-5">
+  <div class="col">
+    <button class="btn btn-outline-danger" (click)="onRegresar()">Regresar</button>
+  </div>
+</div>
+<hr>
+<div class="row" *ngIf="!pelicula">
+  <div class="col-12">
+    <app-spinner></app-spinner>
+  </div>
+</div>
+<div class="row my-4 animate__animated animate__fadeIn" *ngIf="pelicula">
   <div class="col-12 col-md-6 mb-3 mb-md-0">
     <img [src]="pelicula.backdrop_path | poster" 
          [alt]="pelicula.title"
@@ -21,17 +32,17 @@
         {{ pelicula.overview }}
       </div>
     </div>
-    <div class="row mt-4">
-      <div class="col">
-        <button class="btn btn-outline-danger" (click)="onRegresar()">Regresar</button>
-      </div>
-    </div>
   </div>
 </div>
-<h3>Casting</h3>
-<hr>
-<div class="row mt-4" *ngIf="cast.length > 0">
-  <div class="col">
+<div class="row" *ngIf="cast.length == 0">
+  <div class="col-12">
+    <app-spinner></app-spinner>
+  </div>
+</div>
+<div class="row mt-2" *ngIf="cast.length > 0">
+  <h3 class="mt-4">Casting</h3>
+  <hr>
+  <div class="col mt-3">
     <app-cast-slideshow [cast]="cast"></app-cast-slideshow>
   </div>
 </div>

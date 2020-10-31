@@ -1,4 +1,9 @@
 <h2>Resultados para: <b class="text-capitalize">{{ busqueda }}</b></h2>
+<div class="row" *ngIf="movies.length == 0">
+  <div class="col-12">
+    <app-spinner></app-spinner>
+  </div>
+</div>
 <div class="row mt-3" *ngIf="movies.length > 0">
   <div class="col">
     <app-peliculas-poster-grid [movies]="movies"></app-peliculas-poster-grid>
